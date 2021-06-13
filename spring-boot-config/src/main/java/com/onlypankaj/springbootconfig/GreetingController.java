@@ -1,5 +1,6 @@
 package com.onlypankaj.springbootconfig;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,11 +20,15 @@ public class GreetingController {
     @Value("#{${dbValues}}")
     private Map<String, String> dbValues;
 
+    @Autowired
+    private DbSettings dbSettings;
+
     @GetMapping("/greeting")
     public String greeting(){
 
         return this.greetingMessage+
                 this.listValues+
-                this.dbValues;
+                this.dbValues+
+                dbSettings.getHost();
     }
 }
