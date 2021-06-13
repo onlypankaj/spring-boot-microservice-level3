@@ -38,7 +38,7 @@ public class GreetingController {
 
     @GetMapping("/envdetails")
     public String envDetails(){
-        env.getProperty("test");    //Value lookup instead of value inject 
+        env.getProperty("test");    //Value lookup instead of value inject
         return env.toString();
     }
 }
