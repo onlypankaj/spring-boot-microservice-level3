@@ -2,6 +2,7 @@ package com.onlypankaj.springbootconfig;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.env.Environment;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -23,6 +24,9 @@ public class GreetingController {
     @Autowired
     private DbSettings dbSettings;
 
+    @Autowired
+    private Environment env;
+
     @GetMapping("/greeting")
     public String greeting(){
 
@@ -30,5 +34,11 @@ public class GreetingController {
                 this.listValues+
                 this.dbValues+
                 dbSettings.getHost()+dbSettings.getConnection();
+    }
+
+    @GetMapping("/envdetails")
+    public String envDetails(){
+        env.getProperty("test");    //Value lookup instead of value inject 
+        return env.toString();
     }
 }
