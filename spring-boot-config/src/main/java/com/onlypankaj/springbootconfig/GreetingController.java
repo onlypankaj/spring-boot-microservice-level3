@@ -29,6 +29,6 @@ public class GreetingController {
         return this.greetingMessage+
                 this.listValues+
                 this.dbValues+
-                dbSettings.getHost();
+                dbSettings.getHost()+dbSettings.getConnection();
     }
 }
